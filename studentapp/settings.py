@@ -110,14 +110,17 @@ WSGI_APPLICATION = "studentapp.wsgi.application"
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 DATABASES = {
     "default": dj_database_url.config(
-        # fallback for local dev
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",  # Local fallback
         conn_max_age=600,
-        ssl_require=True
+        # ✅ Only require SSL on Render
+        ssl_require=bool(os.environ.get("RENDER"))
     )
 }
+
 
 
 # DATABASES = {

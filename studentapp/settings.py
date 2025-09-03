@@ -95,15 +95,26 @@ WSGI_APPLICATION = "studentapp.wsgi.application"
 #     }
 # }
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "project_db1",
+#         "USER": "postgres",
+#         "PASSWORD": "ramesh@2004",
+#         "HOST": "localhost",
+#         "PORT": "5432",
+#     }
+# }
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "project_db1",
-        "USER": "postgres",
-        "PASSWORD": "ramesh@2004",
-        "HOST": "localhost",
-        "PORT": "5432",
-    }
+    "default": dj_database_url.config(
+        # fallback for local dev
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,  # keep connections open
+        ssl_require=True   # force SSL on Render Postgres
+    )
 }
 
 # DATABASES = {

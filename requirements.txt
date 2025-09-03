@@ -4,3 +4,5 @@ psycopg2-binary
 dj-database-url
 whitenoise
 python-dotenv   # optional for local .env use
+dj-database-url
+

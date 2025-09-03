@@ -112,14 +112,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
 DATABASES = {
     "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",  # Local fallback
+        default="postgresql://postgres_escg_user:V3zOYyAFw3JAaRY3h7tLyplBW4caT6iE@dpg-d2s5objipnbc73e98grg-a/postgres_escg",
         conn_max_age=600,
-        # ✅ Only require SSL on Render
-        ssl_require=bool(os.environ.get("RENDER"))
+        ssl_require=True,  # important for Render
     )
 }
+
 
 
 

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="get" style="margin-bottom: 1rem;">
+    <input type="text" name="q" value="{{ q }}" placeholder="Search by name">
+    <button type="submit">Search</button>
+    <a href="/">Clear</a>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Tamil</th>
+            <th>English</th>
+            <th>Maths</th>
+            <th>Science</th>
+            <th>Social</th>
+            <th>Grade</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s.name }}</td>
+            <td>{{ s.tamil }}</td>
+            <td>{{ s.english }}</td>
+            <td>{{ s.maths }}</td>
+            <td>{{ s.science }}</td>
+            <td>{{ s.social }}</td>
+            <td><strong>{{ s.grade }}</strong></td>
+            <td>
+                <a href="{% url 'student_update' s.id %}">Edit</a> |
+                <a href="{% url 'student_delete' s.id %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="9">No students yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

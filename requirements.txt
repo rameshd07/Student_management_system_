@@ -1,0 +1,7 @@
+pip freeze
+Django==5.2.6
+gunicorn
+psycopg2-binary
+dj-database-url
+whitenoise
+python-dotenv   # optional for local .env use

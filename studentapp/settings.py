@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import dj_database_url
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
@@ -108,14 +109,16 @@ WSGI_APPLICATION = "studentapp.wsgi.application"
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 DATABASES = {
     "default": dj_database_url.config(
         # fallback for local dev
         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,  # keep connections open
-        ssl_require=True   # force SSL on Render Postgres
+        conn_max_age=600,
+        ssl_require=True
     )
 }
+
 
 # DATABASES = {
 #     "default": {
